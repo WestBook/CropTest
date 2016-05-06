@@ -82,9 +82,9 @@ var $uploadCrop;
                             console.log('iphone');  
                             //alert(expectWidth + ',' + expectHeight);  
                             //如果方向角不为1，都需要进行旋转 added by lzk
-                            alert(Orientation);
+                            
                             if(Orientation != "" && Orientation != 1){  
-                                alert('旋转处理');  
+                                alert(Orientation); 
                                 switch(Orientation){  
                                     case 6://需要顺时针（向左）90度旋转  
                                     alert('需要顺时针（向左）90度旋转');  
@@ -102,17 +102,15 @@ var $uploadCrop;
                                 }         
                             }                        
                             base64 = canvas.toDataURL("image/jpeg", 0.8); 
-                            alert(Orientation + ":" + base64);
+                            //alert(Orientation + ":" + base64);
                         }
                         if(base64 != null)
                         {
                             picURL = base64;
                         }
-                        
-                        alert(e.target.result);
                         $uploadCrop.croppie('bind', {
-                        //url: e.target.result,
-                        url: picURL,
+                        url: e.target.result,
+                        //url: picURL,
                         points: [img.width/2.5, img.height/2.5, img.width - (img.width/2.5), img.height - (img.height/2.5)]
                         });                                             
                                                                                                                  

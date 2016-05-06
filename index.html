@@ -101,13 +101,14 @@ var $uploadCrop;
                                     break;  
                                 }         
                             }                        
-                            base64 = canvas.toDataURL("image/jpeg", 0.8);  
+                            base64 = canvas.toDataURL("image/jpeg", 0.8); 
+                            alert(Orientation + ":" + base64);
                         }
                         if(base64 != null)
                         {
                             picURL = base64;
                         }
-                        alert(Orientation + ":" + base64);
+                        
                         alert(e.target.result);
                         $uploadCrop.croppie('bind', {
                         //url: e.target.result,

@@ -64,10 +64,10 @@ var $uploadCrop;
             if (input.files && input.files[0]) {
                 
                 EXIF.getData(input.files[0], function () {
-                        EXIF.getAllTags(this);
+                        //EXIF.getAllTags(this);
                         Orientation = EXIF.getTag(this, 'Orientation');
                     });
-
+                alert(Orientation);
                 var reader = new FileReader();
                 var img = new Image();
                 reader.onload = function(e) {
@@ -109,8 +109,8 @@ var $uploadCrop;
                             picURL = base64;
                         }
                         $uploadCrop.croppie('bind', {
-                        //url: e.target.result,
-                        url: picURL,
+                        url: e.target.result,
+                        //url: picURL,
                         points: [img.width/2.5, img.height/2.5, img.width - (img.width/2.5), img.height - (img.height/2.5)]
                         });                                             
                                                                                                                  

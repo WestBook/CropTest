@@ -81,7 +81,8 @@ var $uploadCrop;
                         if (navigator.userAgent.match(/iphone/i)) {  
                             console.log('iphone');  
                             //alert(expectWidth + ',' + expectHeight);  
-                            //如果方向角不为1，都需要进行旋转 added by lzk  
+                            //如果方向角不为1，都需要进行旋转 added by lzk
+                            alert(Orientation);
                             if(Orientation != "" && Orientation != 1){  
                                 alert('旋转处理');  
                                 switch(Orientation){  
@@ -107,6 +108,7 @@ var $uploadCrop;
                             picURL = base64;
                         }
                         alert(Orientation + ":" + base64);
+                        alert(e.target.result);
                         $uploadCrop.croppie('bind', {
                         //url: e.target.result,
                         url: picURL,

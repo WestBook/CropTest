@@ -86,19 +86,15 @@ var $uploadCrop;
                             if(Orientation != "" && Orientation != 1 && Orientation != null){  
                                 alert(Orientation); 
                                 switch(Orientation){  
-                                    case 6://需要顺时针（向左）90度旋转  
-                                    alert('需要顺时针（向左）90度旋转');  
+                                    case 6:  
                                     rotateImg(this,'left',canvas);  
                                     break;  
-                                case 8://需要逆时针（向右）90度旋转  
-                                    alert('需要顺时针（向右）90度旋转');  
+                                case 8: 
                                     rotateImg(this,'right',canvas);  
                                     break;  
-                                case 3://需要180度旋转  
-                                    alert('需要180度旋转');  
+                                case 3: 
                                     //rotateImg(this,'right',canvas);//转两次  
-                                    //rotateImg(this,'right',canvas);
-                                    rotateImg(this,'left',canvas);
+                                    rotateImg(this,'right',canvas);
                                     break;  
                                 }         
                             }                        

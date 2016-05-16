@@ -4,30 +4,10 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="croppie.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript">
-    /*
-            var browser=navigator.appName
-            var b_version=navigator.appVersion
-            var version=parseFloat(b_version)
-
-            if ((browser=="Netscape")&& version > 4)
-            {
-                
-                console.log(browser);
-                console.log(version);
-            }
-            else
-            {
-                alert("Bad Browser.");
-                console.log(browser);
-                console.log(version);
-            }
-      */  
-</script>
 
 </head>
 <style type="text/css">
-    #btntest, #result
+    #btntest, #result, #btn1
     {
         text-align: center;
     }
@@ -37,14 +17,13 @@
 <script src="croppie.js"></script>
 <script src="exif.js"></script>
 <div class="actions">
-<div id="btn1">
-    <input type="file" id="upload" accept="image/jpeg,image/png" value="選擇圖片文件" />
+<div id="btn1">   
+    <input type="file" id="upload" accept="image/jpeg,image/png" value="選擇圖片文件" />    
 <div class="crop"> 
-<div id="upload-demo" style="float: left"></div>
+<div id="upload-demo"></div>
 </div> 
 </div>
 <div id="btntest"> 
-
 <button type="button" class="upload-result">裁剪</button>
 </div>
 <div id="result"></div> 
@@ -75,26 +54,21 @@ var $uploadCrop;
                 var picURL = e.target.result;
                     img.onload = function() {
                         var canvas = document.createElement("canvas");  
-                        var ctx = canvas.getContext("2d");  
-                         
+                        var ctx = canvas.getContext("2d");                          
                         var base64 = null;
-                        if (navigator.userAgent.match(/iphone/i)) {  
-                            console.log('iphone');  
-                            //alert(expectWidth + ',' + expectHeight);  
-                            //如果方向角不为1，都需要进行旋转 added by lzk
-                            
+                        if (navigator.userAgent.match(/iphone/i)) {                 
                             if(Orientation != "" && Orientation != 1 && Orientation != null){  
                                 alert(Orientation); 
                                 switch(Orientation){  
-                                    case 6:  
-                                    rotateImg(this,'left',canvas);  
+                                    case 6:
+                                    rotateImg(this, Orientation, canvas);  
                                     break;  
                                 case 8: 
-                                    rotateImg(this,'right',canvas);  
+                                    rotateImg(this,Orientation,canvas);  
                                     break;  
-                                case 3: 
-                                    //rotateImg(this,'right',canvas);//转两次  
-                                    rotateImg(this,'right',canvas);
+                                case 3:
+                                    rotateImg(this,Orientation,canvas);//转两次  
+                                    //rotateImg(this,Orientation,canvas);  
                                     break;  
                                 }         
                             }                        
@@ -118,7 +92,6 @@ var $uploadCrop;
                 alert("Sorry - you're browser doesn't support the FileReader API");
             }
         }
-
         $uploadCrop = $('#upload-demo').croppie({
             viewport: {
                 width: 427,
@@ -129,23 +102,19 @@ var $uploadCrop;
                 height: bheight
             }
         });
-
         $('#upload').on('change', function() {
             $(".crop").show();
             readFile(this);
         });
-
         $('.upload-result').on('click', function(ev) {
             $uploadCrop.croppie('result', {
                 type: 'canvas'
-                }).then(function(resp) {           	
+                }).then(function(resp) {            
                 popupResult({
                     src: resp
                 });
             });
-
             $
-
         });
         function popupResult(result) {
             var html;
@@ -158,59 +127,40 @@ var $uploadCrop;
             $("#result").html(html);
            
         }
-
-        function rotateImg(img, direction, canvas){
-            var min_step = 0;    
-            var max_step = 3;    
-           
+        function rotateImg(img, Orientation, canvas){
             if (img == null)return;    
             //img的高度和宽度不能在img元素隐藏后获取，否则会出错    
             var height = img.height;    
             var width = img.width;    
          
-            var step = 2;    
-            if (step == null) {    
-            step = min_step;    
-            }    
-            if (direction == 'right') {    
-            step++;    
-            //旋转到原位置，即超过最大值    
-            step > max_step && (step = min_step);    
-            } else {    
-            step--;    
-            step < min_step && (step = max_step);    
-            }
-
             //旋转角度以弧度值为参数    
             var degree = step * 90 * Math.PI / 180;    
             var ctx = canvas.getContext('2d');    
-            switch (step) {    
-                case 0:    
+            switch (Orientation) {    
+                case 1:    
                 canvas.width = width;    
                 canvas.height = height;    
                 ctx.drawImage(img, 0, 0);    
                 break;    
-                case 1:    
-                canvas.width = height;    
-                canvas.height = width;    
-                ctx.rotate(degree);    
+                case 3:    
+                canvas.width = width;
+                canvas.height = height;
+                ctx.rotate(180 * Math.PI / 180);
+                ctx.drawImage(img, -width, -height);   
+                break;    
+                case 6:    
+                canvas.width = height;
+                canvas.height = width;
+                ctx.rotate(90 * Math.PI / 180);
                 ctx.drawImage(img, 0, -height);    
                 break;    
-                case 2:    
-                canvas.width = width;    
-                canvas.height = height;    
-                ctx.rotate(degree);    
-                ctx.drawImage(img, -width, -height);    
-                break;    
-                case 3:    
-                canvas.width = height;    
-                canvas.height = width;    
-                ctx.rotate(degree);    
-                ctx.drawImage(img, -width, 0);    
+                case 8:    
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0);   
                 break;    
             }    
         }
-
         //$('.cr-slider-wrap').prepend('<img src="icon_zoom2.png" />');
         //$('.cr-slider-wrap').append('<img src="icon_zoom1.png" />');
         //$('.cr-slider').css("padding-bottom", "7px");

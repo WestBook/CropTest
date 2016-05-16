@@ -57,9 +57,12 @@ var $uploadCrop;
                         var ctx = canvas.getContext("2d");                          
                         var base64 = null;
                         if (navigator.userAgent.match(/iphone/i)) {                 
-                            if(Orientation != "" && Orientation != 1 && Orientation != null){  
+                            if(Orientation != "" && Orientation != null){  
                                 alert(Orientation); 
-                                switch(Orientation){  
+                                switch(Orientation){
+                                    case 1:
+                                        rotateImg(this, Orientation, canvas);
+                                        break;
                                     case 6:
                                     rotateImg(this, Orientation, canvas);  
                                     break;  
@@ -146,15 +149,16 @@ var $uploadCrop;
                 ctx.drawImage(img, -width, -height);   
                 break;    
                 case 6:    
-                canvas.width = width;    
-                canvas.height = height;    
-                ctx.drawImage(img, 0, 0);    
+                canvas.width = height;
+                canvas.height = width;
+                ctx.rotate(90 * Math.PI / 180);
+                ctx.drawImage(img, 0, -height);    
                 break;    
                 case 8:    
-                canvas.width = width;
-                canvas.height = height;
-                ctx.rotate(180 * Math.PI / 180);
-                ctx.drawImage(img, -width, -height);  
+                canvas.width = height;
+                canvas.height = width;
+                ctx.rotate(270 * Math.PI / 180);
+                ctx.drawImage(img, -width, 0);  
                 break;    
             }    
         }

@@ -73,7 +73,7 @@ var $uploadCrop;
                                 }         
                             }                        
                             base64 = canvas.toDataURL("image/jpeg", 0.8); 
-                            alert(Orientation + ":" + base64);
+                            alert(base64);
                         }
                         if(base64 != null)
                         {
@@ -153,7 +153,8 @@ var $uploadCrop;
                 case 8:    
                 canvas.width = width;
                 canvas.height = height;
-                ctx.drawImage(img, 0, 0);   
+                ctx.rotate(180 * Math.PI / 180);
+                ctx.drawImage(img, -width, -height);  
                 break;    
             }    
         }

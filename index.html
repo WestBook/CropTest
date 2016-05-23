@@ -55,7 +55,7 @@ var $uploadCrop;
                         var canvas = document.createElement("canvas");  
                         var ctx = canvas.getContext("2d");                          
                         var base64 = null;
-                        //if (navigator.userAgent.match(/iphone/i)) {                 
+                        if (navigator.userAgent.match(/iphone/i)) {                 
                             if(Orientation != "" && Orientation != null){ 
                                 alert(Orientation);
                                 switch(Orientation){
@@ -72,18 +72,19 @@ var $uploadCrop;
                                     rotateImg(this,Orientation,canvas);//转两次  
                                     //rotateImg(this,Orientation,canvas);  
                                     break;  
-                                }         
+                                }
+                                base64 = canvas.toDataURL("image/jpeg", 0.8);
                             }                        
-                            base64 = canvas.toDataURL("image/jpeg", 0.8); 
+                             
                            
-                       // }
+                        }
                         if(base64 != null)
                         {
                             picURL = base64;
                         }
                         $uploadCrop.croppie('bind', {
-                        url: e.target.result,
-                        //url: picURL,
+                        //url: e.target.result,
+                        url: picURL,
                         points: [img.width/2.5, img.height/2.5, img.width - (img.width/2.5), img.height - (img.height/2.5)]
                         });                                             
                                                                                                                  

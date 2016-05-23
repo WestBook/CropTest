@@ -43,10 +43,8 @@ var $uploadCrop;
             if (input.files && input.files[0]) {
                 
                 EXIF.getData(input.files[0], function () {
-                        //EXIF.getAllTags(this);
                         Orientation = EXIF.getTag(this, 'Orientation');
                     });
-                //alert(Orientation);
                 var reader = new FileReader();
                 var img = new Image();
                 reader.onload = function(e) {
@@ -58,7 +56,6 @@ var $uploadCrop;
                         var base64 = null;
                         if (navigator.userAgent.match(/iphone/i)) {                 
                             if(Orientation != "" && Orientation != null){  
-                                alert(Orientation); 
                                 switch(Orientation){
                                     case 1:
                                         rotateImg(this, Orientation, canvas);
@@ -76,7 +73,6 @@ var $uploadCrop;
                                 }         
                             }                        
                             base64 = canvas.toDataURL("image/jpeg", 0.8); 
-                            alert(base64);
                         }
                         if(base64 != null)
                         {

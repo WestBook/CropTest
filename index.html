@@ -50,13 +50,14 @@ var $uploadCrop;
                 reader.onload = function(e) {
                 img.src = e.target.result;
                 var picURL = e.target.result;
-                alert(e.target.result);
+                
                     img.onload = function() {
                         var canvas = document.createElement("canvas");  
                         var ctx = canvas.getContext("2d");                          
                         var base64 = null;
                         if (navigator.userAgent.match(/iphone/i)) {                 
-                            if(Orientation != "" && Orientation != null){  
+                            if(Orientation != "" && Orientation != null){ 
+                                alert(Orientation);
                                 switch(Orientation){
                                     case 1:
                                         rotateImg(this, Orientation, canvas);

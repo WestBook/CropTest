@@ -16,8 +16,7 @@
     var browser = navigator.appName
     var b_version = navigator.appVersion
     var version = parseFloat(b_version)
-    var userAgent = navigator.userAgent.toLowerCase();
-    var IOS_Chrome = userAgent.match("safari") == null && userAgent.indexOf("chrome") != -1
+    var uAgent = navigator.userAgent.toLowerCase();
     var isMobile = {
         Android: function () {
             return navigator.userAgent.match(/Android/i);
@@ -26,7 +25,7 @@
             return navigator.userAgent.match(/BlackBerry/i);
         },
         iOS: function () {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            return navigator.userAgent.match(/(iphone|ipad|ipod);?/i);
         },
         Opera: function () {
             return navigator.userAgent.match(/Opera Mini/i);
@@ -51,11 +50,11 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if(userAgent.indexOf("safari") != -1 && userAgent.indexOf("chrome") != -1)
+    if(uAgent.indexOf("safari") != -1 && uAgent.indexOf("chrome") != -1)
     {
         alert('IOS_CHROME');
     }
-    else if (isMobile.iOS() && navigator.userAgent.match("Safari") != null)
+    else if (isMobile.iOS() && uAgent.match("Safari") != null)
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

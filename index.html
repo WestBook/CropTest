@@ -49,7 +49,7 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if (isMobile.iOS())
+    if (isMobile.iOS()&& (navigator.userAgent.match("Safari") == null || navigator.userAgent.indexOf("chrome") <= 0))
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

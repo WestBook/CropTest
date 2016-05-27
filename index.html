@@ -50,9 +50,9 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if (isMobile.iOS() && uAgent.match("safari") == null)
+    if (isMobile.iOS())
     {
-        alert('請改用Safari瀏覽器開啟網頁');
+        alert(navigator.userAgent);
     }
     else if (isMobile.Android() && navigator.userAgent.indexOf("Chrome") <= 0)
     {

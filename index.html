@@ -12,6 +12,52 @@
         text-align: center;
     }
 </style>
+<script>
+    var browser = navigator.appName
+    var b_version = navigator.appVersion
+    var version = parseFloat(b_version)
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+    //判斷瀏覽器版本
+    if ((browser == "Netscape") && version > 4) {
+
+        console.log(browser);
+        console.log(version);
+    }
+    else {
+        //IE瀏覽器中，非IE11跳出警告
+        alert('請改用IE 11.0 (以上) 或是Chrome瀏覽器啟本網頁');
+        console.log(browser);
+        console.log(version);
+    }
+    //判斷手機裝置OS
+    if (isMobile.iOS() && navigator.userAgent.match("Safari") == null)
+    {
+        alert('請改用Safari瀏覽器開啟網頁');
+    }
+    else if (isMobile.Android() && navigator.userAgent.indexOf("Chrome") <= 0)
+    {
+        alert('請改用Chrome瀏覽器開啟網頁');
+    }
+</script>
 <body>
 <script src="es6-promise.js"></script>
 <script src="croppie.js"></script>

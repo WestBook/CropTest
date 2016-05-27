@@ -51,7 +51,11 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if (isMobile.iOS() && userAgent.indexOf("safari") != -1 && userAgent.indexOf("chrome") != -1)
+    if(isMobile.iOS())
+    {
+        alert('IOS');
+    }
+    else if (isMobile.iOS() && userAgent.indexOf("safari") != -1 && userAgent.indexOf("chrome") != -1)
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

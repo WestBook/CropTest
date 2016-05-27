@@ -16,6 +16,8 @@
     var browser = navigator.appName
     var b_version = navigator.appVersion
     var version = parseFloat(b_version)
+    var userAgent = navigator.userAgent
+    var IOS_Chrome = userAgent.match("Safari") == null && userAgent.indexOf("Chrome") <= 0
     var isMobile = {
         Android: function () {
             return navigator.userAgent.match(/Android/i);
@@ -49,7 +51,7 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if (isMobile.iOS()&& (navigator.userAgent.match("Safari") == null || navigator.userAgent.indexOf("chrome") <= 0))
+    if (isMobile.iOS() && (navigator.userAgent.match("Safari") == null || IOS_Chrome))
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

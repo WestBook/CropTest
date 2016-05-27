@@ -55,11 +55,7 @@
     {
         alert('IOS_CHROME');
     }
-    else if (isMobile.iOS() && (userAgent.indexOf("chrome") != -1))
-    {
-        alert('請改用Safari瀏覽器開啟網頁');
-    }
-    else if (isMobile.iOS() && navigator.userAgent.match("Safari") == null)
+    else if (isMobile.iOS() && navigator.userAgent.match("Safari") != null)
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

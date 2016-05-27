@@ -50,7 +50,7 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if (isMobile.iOS())
+    if (isMobile.iOS() && (navigator.userAgent.match("CriOS") || navigator.userAgent.match("FxiOS")))
     {
         alert(navigator.userAgent);
     }

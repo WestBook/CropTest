@@ -50,7 +50,7 @@
         console.log(version);
     }
     //判斷手機裝置OS
-    if (isMobile.iOS())
+    if (isMobile.iOS() && uAgent.match("safari") == null)
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

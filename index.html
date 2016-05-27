@@ -16,8 +16,8 @@
     var browser = navigator.appName
     var b_version = navigator.appVersion
     var version = parseFloat(b_version)
-    var userAgent = navigator.userAgent
-    var IOS_Chrome = userAgent.match("Safari") == null && userAgent.indexOf("Chrome") != -1
+    var userAgent = navigator.userAgent.toLowerCase();
+    var IOS_Chrome = userAgent.match("safari") == null && userAgent.indexOf("chrome") != -1
     var isMobile = {
         Android: function () {
             return navigator.userAgent.match(/Android/i);
@@ -55,7 +55,7 @@
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }
-    else if (isMobile.iOS() && IOS_Chrome)
+    else if (IOS_Chrome)
     {
         alert('請改用Safari瀏覽器開啟網頁');
     }

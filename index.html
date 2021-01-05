@@ -166,6 +166,9 @@ var $uploadCrop;
             readFile(this);
         });
         $('.upload-result').on('click', function(ev) {
+            gtag('event', 'button click', {
+                name:'cropTest'
+            })
             $uploadCrop.croppie('result', {
                 type: 'canvas'
                 }).then(function(resp) {            
@@ -173,7 +176,6 @@ var $uploadCrop;
                     src: resp
                 });
             });
-            $
         });
         function popupResult(result) {
             var html;
@@ -183,8 +185,7 @@ var $uploadCrop;
             if (result.src) {
                 html = '<img src="' + result.src + '" />';
             }
-            $("#result").html(html);
-           
+            $("#result").html(html);  
         }
         function rotateImg(img, Orientation, canvas){
             if (img == null)return;    
